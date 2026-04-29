@@ -1,5 +1,5 @@
 import { ConfigProvider } from 'antd';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Suspense, lazy } from 'react';
 import BasicLayout from './layouts/BasicLayout';
 
@@ -17,29 +17,29 @@ const FullscreenLayout = () => {
     <Suspense fallback={<div style={{ padding: 24 }}>加载中...</div>}>
       <Routes>
         <Route path="/" element={<Navigate to="/ai-create" replace />} />
-        <Route path="pages" element={<BasicLayout />}>
+        <Route path="/pages" element={<BasicLayout />}>
           <Route index element={<ActivityPageList />} />
         </Route>
-        <Route path="ai-create" element={<BasicLayout />}>
+        <Route path="/ai-create" element={<BasicLayout />}>
           <Route index element={<PageManagement />} />
         </Route>
-        <Route path="pages/detail/:id" element={
+        <Route path="/pages/detail/:id" element={
           <div style={{ height: '100vh', overflow: 'hidden' }}>
             <PageDetail />
           </div>
         } />
-        <Route path="editor/page/:id" element={
+        <Route path="/editor/page/:id" element={
           <div style={{ height: '100vh', overflow: 'hidden' }}>
             <PageEditor />
           </div>
         } />
-        <Route path="plays" element={<BasicLayout />}>
+        <Route path="/plays" element={<BasicLayout />}>
           <Route index element={<PlayManagement />} />
         </Route>
-        <Route path="tasks" element={<BasicLayout />}>
+        <Route path="/tasks" element={<BasicLayout />}>
           <Route index element={<TaskManagement />} />
         </Route>
-        <Route path="coupons" element={<BasicLayout />}>
+        <Route path="/coupons" element={<BasicLayout />}>
           <Route index element={<CouponManagement />} />
         </Route>
       </Routes>
@@ -56,9 +56,9 @@ function App() {
         },
       }}
     >
-      <BrowserRouter>
+      <HashRouter>
         <FullscreenLayout />
-      </BrowserRouter>
+      </HashRouter>
     </ConfigProvider>
   );
 }

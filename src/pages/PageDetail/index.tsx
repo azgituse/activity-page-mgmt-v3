@@ -88,6 +88,7 @@ export default function PageDetail() {
     };
 
     // 玩法和优惠券
+    const playNodeMap = new Map<string, EntityNode>();
     page.plays.forEach((play) => {
       const playStatus: EntityStatus = play.aiDraftStatus || 'pending';
       if (playStatus === 'confirmed') {
@@ -132,10 +133,11 @@ export default function PageDetail() {
         });
       });
 
+      playNodeMap.set(play.id, playNode);
       pageNode.children!.push(playNode);
     });
 
-    // 页面级别的营销任务（单独统计，不放入树中）
+    // 营销任务 - 根据 relatedPlayIds 挂到对应玩法下
     page.marketingTasks.forEach((task) => {
       const taskStatus: EntityStatus = task.aiDraftStatus || 'pending';
       if (taskStatus === 'confirmed') {
@@ -145,6 +147,29 @@ export default function PageDetail() {
         pending++;
       }
       stats.task.total++;
+
+      const taskNode: EntityNode = {
+        id: task.id,
+        name: task.name,
+        type: 'task',
+        status: taskStatus,
+        itemId: task.id,
+        entityId: task.taskId === '待生成' ? undefined : task.taskId,
+        confirmedTime: task.confirmedTime,
+        data: task,
+      };
+
+      // 如果任务有关联玩法，挂到玩法下；否则挂到页面下
+      if (task.relatedPlayIds && task.relatedPlayIds.length > 0) {
+        task.relatedPlayIds.forEach((playId) => {
+          const playNode = playNodeMap.get(playId);
+          if (playNode) {
+            playNode.children!.push(taskNode);
+          }
+        });
+      } else {
+        pageNode.children!.push(taskNode);
+      }
     });
 
     tree.push(pageNode);

@@ -263,14 +263,7 @@ export default function PageManagement() {
         </Col>
       </Row>
 
-      <Card
-        title="页面管理"
-        extra={
-          <Space>
-            <Text type="secondary">页面 → 玩法/任务 → 优惠券</Text>
-          </Space>
-        }
-      >
+      <Card title="页面管理">
         <Space wrap style={{ marginBottom: 16 }}>
           <Search
             placeholder="搜索页面/玩法/任务/券名称"

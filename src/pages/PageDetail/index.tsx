@@ -191,7 +191,7 @@ export default function PageDetail() {
           type="error"
           showIcon
           action={
-            <Button onClick={() => navigate('/pages')}>
+            <Button onClick={() => navigate('/ai-create')}>
               返回列表
             </Button>
           }
@@ -331,7 +331,7 @@ export default function PageDetail() {
         <Card style={{ marginBottom: 16 }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             <Space>
-              <Button icon={<ArrowLeftOutlined />} onClick={() => navigate('/pages')}>
+              <Button icon={<ArrowLeftOutlined />} onClick={() => navigate('/ai-create')}>
                 返回列表
               </Button>
               <Title level={4} style={{ margin: 0 }}>

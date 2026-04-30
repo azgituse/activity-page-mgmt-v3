@@ -110,12 +110,12 @@ export default function PageManagement() {
       dataIndex: 'pageId',
       key: 'pageId',
       width: 130,
-      render: (text: string) => (
+      render: (text: string, record: ActivityPage) => (
         <Space>
-          {text === '待生成' ? (
-            <Tag color="default">待生成</Tag>
-          ) : (
+          {record.aiDraftStatus === 'confirmed' ? (
             <span style={{ fontFamily: 'monospace', fontWeight: 500 }}>{text}</span>
+          ) : (
+            <Tag color="default">待生成</Tag>
           )}
         </Space>
       ),
@@ -291,7 +291,7 @@ export default function PageManagement() {
           >
             <Option value="all">全部草稿</Option>
             <Option value="pending">待确认</Option>
-            <Option value="confirmed">已就绪</Option>
+            <Option value="confirmed">已确认</Option>
           </Select>
         </Space>
 

@@ -699,10 +699,10 @@ export default function PageEditor() {
         <Col span={4}>{renderComponentLibrary()}</Col>
 
         {/* 中间：预览区 */}
-        <Col span={10}>{renderPreviewPanel()}</Col>
+        <Col span={11}>{renderPreviewPanel()}</Col>
 
         {/* 右侧：配置面板 */}
-        <Col span={6}>{renderConfigPanel()}</Col>
+        <Col span={9}>{renderConfigPanel()}</Col>
       </Row>
 
       {/* 玩法配置弹窗 */}

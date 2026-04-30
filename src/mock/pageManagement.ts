@@ -672,7 +672,7 @@ export const mockPages: ActivityPage[] = [
   },
   {
     id: '3',
-    pageId: '待生成',
+    pageId: 'PG-20260310-003',
     pageName: '春季新品发布会活动页',
     sourceTask: 'TSK-20260310-003',
     sourceTaskName: '春季新品发布会',
